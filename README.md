@@ -18,7 +18,7 @@ When a new image size is requested of `image-resizer` via the CDN, it will pull 
 
 ## Getting Started
 
-    $ npm install -g image-resizer gulp
+    $ npm install -g tripviss/image-resizer gulp
     $ mkdir my_fancy_image_server
     $ cd my_fancy_image_server
     $ image-resizer new
@@ -274,14 +274,15 @@ It is also of note that due to some issues with GCC, `sharp` can not be used on 
 
 ## Local development
 
-To run `image-resizer` locally, the following will work for an OSX environment assuming you have node/npm installed - [NVM is useful](https://github.com/creationix/nvm).
+To run `image-resizer` locally:
 
 ```bash
-npm install gulp -g
-./node_modules/image_resizer/node_modules/sharp/preinstall.sh
+npm install -g gulp
 npm install
 gulp watch
 ```
+
+See [install docs for sharp](http://sharp.dimens.io/en/stable/install/) if you get errors related to sharp / libvips.
 
 The gulp setup includes nodemon which runs the app nicely, restarting between code changes. `PORT` can be set in the `.env` file if you need to run on a port other than 3001.
 
