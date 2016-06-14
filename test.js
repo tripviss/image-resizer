@@ -12,23 +12,7 @@ var express = require('express'),
     env = ir.env,
     Img = ir.img,
     streams = ir.streams,
-    chalk = require('chalk'),
-    exec = require('child_process').exec;
-
-// check to see if vips is installed
-exec ('vips --version', function (err, stdout, stderr) {
-  if (err || stderr) {
-    console.error(
-      chalk.red('\nMissing dependency:'),
-      chalk.red.bold('libvips')
-    );
-
-    console.log(
-      chalk.cyan('  to install vips on your system run:'),
-      chalk.bold('./node_modules/sharp/preinstall.sh\n')
-    );
-  }
-});
+    chalk = require('chalk');
 
 app.directory = __dirname;
 ir.expressConfig(app);
