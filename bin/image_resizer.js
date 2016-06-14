@@ -2,7 +2,7 @@
 
 'use strict';
 
-var program, path, fs, mkdirp, pkg, chalk, _, exec;
+var program, path, fs, mkdirp, pkg, chalk, _;
 
 
 program = require('commander');
@@ -12,7 +12,6 @@ path    = require('path');
 chalk   = require('chalk');
 pkg     = require('../package.json');
 _       = require('lodash');
-exec    = require('child_process').exec;
 
 /**
 File/Directory helper functions
@@ -112,17 +111,9 @@ function createApplicationAt(dir){
   console.log('     $ gulp watch');
   console.log();
 
-  exec('vips --version', function (err, stdout, stderr) {
-    if (err || stderr) {
-      console.log(chalk.yellow('   looks like vips is also missing, run the following to install') + ':');
-      console.log('     $ ./node_modules/image_resizer/node_modules/sharp/preinstall.sh');
-      console.log();
-    }
-
-    console.log(chalk.yellow('   to get up and running on Heroku') + ':');
-    console.log('     https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction');
-    console.log();
-  });
+  console.log(chalk.yellow('   to get up and running on Heroku') + ':');
+  console.log('     https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction');
+  console.log();
 }
 
 /**
