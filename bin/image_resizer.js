@@ -52,27 +52,30 @@ function createApplicationAt(dir){
   // create a new package.json
   newPkg = {
     name: appName,
-    version: '1.0.0',
-    main: 'index.js',
-    description: 'My awesome image resizing service!',
-    engines: {
-      'node': pkg.engines.node
+    version: '0.1.0',
+    description: 'An image-resizer instance',
+    main: 'server.js',
+    scripts: {
+      'start': 'node server.js'
     },
     dependencies: {
-      'image-resizer': '~' + pkg.version,
-      'express': pkg.dependencies.express,
-      'lodash': pkg.dependencies.lodash,
       'chalk': pkg.dependencies.chalk,
+      'express': pkg.dependencies.express,
+      'image-resizer': '^' + pkg.version,
+      'lodash': pkg.dependencies.lodash,
       'sharp': pkg.dependencies.sharp
     },
-    devDependencies: pkg.devDependencies
+    devDependencies: pkg.devDependencies,
+    engines: {
+      'node': pkg.engines.node
+    }
   };
 
   write(dir + '/package.json', JSON.stringify(newPkg, null, 2));
 
-  // create index.js
-  var indexTmpl = fs.readFileSync(__dirname + '/./templates/index.js.tmpl');
-  write(dir + '/index.js', _.template(indexTmpl, {}));
+  // create server.js
+  var serverTmpl = fs.readFileSync(__dirname + '/./templates/server.js.tmpl');
+  write(dir + '/server.js', _.template(serverTmpl, {}));
 
   // create the gulpfile
   copy(__dirname + '/./templates/gulpfile.js.tmpl', dir + '/gulpfile.js');
