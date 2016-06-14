@@ -10,13 +10,13 @@ var gulp = require('gulp'),
 
 
 gulp.task('lint', function () {
-  gulp.src(['plugins/**/*.js', 'index.js', 'gulpfile.js'])
+  gulp.src(['plugins/**/*.js', 'server.js', 'gulpfile.js'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(stylish));
 });
 gulp.task('lint:watch', ['lint'], function(){
   gulp.watch(
-    ['plugins/**/*.js', 'index.js'],
+    ['plugins/**/*.js', 'server.js'],
     function(event){
       util.log('file changed:', util.colors.green(event.path));
       gulp.src(event.path)
@@ -63,7 +63,7 @@ function env(){
 
 gulp.task('watch', ['lint'], function () {
   nodemon({
-    script: 'index.js',
+    script: 'server.js',
     ext: 'js',
     env: env(),
     ignore: ['node_modules/**/*.js']

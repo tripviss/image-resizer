@@ -25,7 +25,7 @@ When a new image size is requested of `image-resizer` via the CDN, it will pull 
     $ npm install
     $ gulp watch
 
-This will create a new directory structure including all the necessary files needed to run `image-resizer`. The money file is `index.js` which is loads the express configuration and routes.
+This will create a new directory structure including all the necessary files needed to run `image-resizer`. The money file is `server.js` which loads the express configuration and routes.
 
 `image-resizer` can also simply be added as a node_module to any project and the streams interfaces used standalone. `./test.js` has a good example of how the app should work running behind Express.
 
