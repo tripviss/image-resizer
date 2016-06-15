@@ -20,7 +20,7 @@ module.exports = function () {
       return callback(null, image);
     }
 
-    image.log.time('optimize-sharp:' + image.format);
+    image.log.time('optimize-sharp:' + (image.outputFormat || image.format));
 
     var r = sharp(image.contents);
 
