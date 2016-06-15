@@ -1,6 +1,6 @@
 'use strict';
 
-var _, Logger, env, modifiers, stream, util, imgType;
+var _, Logger, env, modifiers, stream, util, imageType;
 
 _         = require('lodash');
 Logger    = require('./utils/logger');
@@ -8,7 +8,7 @@ env       = require('./config/environment_vars');
 modifiers = require('./lib/modifiers');
 stream    = require('stream');
 util      = require('util');
-imgType   = require('image-type');
+imageType = require('image-type');
 
 
 // Simple stream to represent an error at an early stage, for instance a
@@ -188,10 +188,15 @@ Object.defineProperty(Image.prototype, 'format', {
 Object.defineProperty(Image.prototype, 'contents', {
   get: function () { return this._contents; },
   set: function (data) {
+    var imgType;
+
     this._contents = data;
 
     if (this.isBuffer()) {
-      this.format = imgType(data).ext;
+      imgType = imageType(data);
+      if (imgType) {
+        this.format = imgType.ext;
+      }
       this.isFormatValid();
     }
   }
