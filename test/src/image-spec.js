@@ -40,6 +40,8 @@ describe('Image class', function(){
 
       img.contents = buf;
       expect(img.format).to.not.exist;
+      expect(img.error).to.exist;
+      img.error.message.should.equal('Input format not recognized');
     });
   });
 
