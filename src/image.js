@@ -169,7 +169,10 @@ Image.prototype.sizeSaving = function(){
 Image.prototype.isFormatValid = function () {
   if (!this.format) {
     this.error = new Error('Input format not recognized');
+
+    return;
   }
+
   if (Image.validInputFormats.indexOf(this.format) === -1) {
     this.error = new Error(
       'The listed format (' + this.format + ') is not valid.'
