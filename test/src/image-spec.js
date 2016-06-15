@@ -25,13 +25,21 @@ describe('Image class', function(){
   });
 
   describe('#content', function () {
-    it ('should set the format based on the image data', function () {
+    it('should set the format based on the image data', function () {
       var imgSrc = path.resolve(__dirname, '../sample_images/image1.jpg');
       var buf = fs.readFileSync(imgSrc);
       var img = new Img({path: '/path/to/image.jpg'});
 
       img.contents = buf;
       img.format.should.equal('jpeg');
+    });
+
+    it('should not die on invalid image data', function () {
+      var buf = new Buffer(5);
+      var img = new Img({path: '/path/to/image.jpg'});
+
+      img.contents = buf;
+      expect(img.format).to.not.exist;
     });
   });
 
