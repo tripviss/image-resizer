@@ -43,7 +43,7 @@ module.exports = function () {
 
     var r = sharp(image.contents);
 
-    // never enlarge an image beyonds its original size
+    // never enlarge an image beyond its original size
     r.withoutEnlargement();
 
     // if allowed auto rotate images, very helpful for photos off of an iphone
