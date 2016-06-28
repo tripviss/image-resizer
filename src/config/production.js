@@ -10,7 +10,7 @@ errorHandler = require('errorhandler');
 module.exports = function(app){
 
   app.set('port', process.env.PORT || 3001);
-  app.use(morgan('dev'));
+  app.use(morgan('short'));
   app.use(errorHandler());
 
 };
