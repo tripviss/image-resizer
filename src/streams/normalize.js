@@ -34,7 +34,7 @@ module.exports = function () {
     }
 
     if (normalizedFormat === null) {
-      image.log.log('normalize: no normalize');
+      image.log.log('normalize:', image.log.colors.bold('no normalize'));
       return callback(null, image);
     }
 
