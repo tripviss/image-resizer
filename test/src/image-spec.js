@@ -137,12 +137,23 @@ describe('Image class', function(){
   });
 
 
-  // describe('bad formats', function(){
-  //   it('should set error if the format is not valid', function(){
-  //     var img = new Img({path: '/path/to/image.tiff'});
-  //     img.error.message.should.eq(Img.formatErrorText);
-  //   });
-  // });
+  describe('bad formats', function(){
+    it('should set error if input format is not supported', function(){
+      var img = new Img({path: '/path/to/image.psd'});
+      img.format = 'psd';
+      img.isFormatValid();
+      expect(img.error).to.exist;
+      img.error.message.should.equal('Unsupported input format "psd"');
+    });
+
+    it('should set error if output format is not supported', function(){
+      var img = new Img({path: '/path/to/image.gif'});
+      img.format = 'gif';
+      img.isFormatValid();
+      expect(img.error).to.exist;
+      img.error.message.should.equal('Unsupported output format "gif"');
+    });
+  });
 
 
   it('should respond in an error state', function(){
