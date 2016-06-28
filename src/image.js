@@ -54,7 +54,7 @@ function Image(request){
   this.log = new Logger();
 }
 
-Image.validInputFormats  = ['jpeg', 'jpg', 'gif', 'png', 'webp'];
+Image.validInputFormats  = ['jpeg', 'jpg', 'png', 'webp', 'tiff', 'tif', 'gif'];
 Image.validOutputFormats = ['jpeg', 'png', 'webp'];
 
 // Determine the name and format of the requested image
@@ -174,18 +174,19 @@ Image.prototype.isFormatValid = function () {
   }
 
   if (Image.validInputFormats.indexOf(this.format) === -1) {
-    this.error = new Error(
-      'The listed format (' + this.format + ') is not valid.'
-    );
+    this.error = new Error('Unsupported input format "' + this.format + '"');
+  } else if (Image.validOutputFormats.indexOf(this.format) === -1 && !this.outputFormat) {
+    this.error = new Error('Unsupported output format "' + this.format + '"');
   }
 };
 
-// Setter/getter for image format that normalizes jpeg formats
+// Setter/getter for image format that normalizes formats
 Object.defineProperty(Image.prototype, 'format', {
   get: function () { return this._format; },
   set: function (value) {
     this._format = value.toLowerCase();
     if (this._format === 'jpg') { this._format = 'jpeg'; }
+    else if (this._format === 'tif') { this._format = 'tiff'; }
   }
 });
 

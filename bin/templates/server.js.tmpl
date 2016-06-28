@@ -51,6 +51,7 @@ app.get('/*?', function(request, response){
 
   image.getFile()
     .pipe(new streams.identify())
+    .pipe(new streams.normalize())
     .pipe(new streams.resize())
     .pipe(new streams.filter())
     .pipe(new streams.optimize())
