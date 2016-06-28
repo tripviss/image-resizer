@@ -142,8 +142,8 @@ module.exports = function () {
           });
           break;
         case 'scale':
-          // TODO: deal with scale
           r.resize(image.modifiers.width, image.modifiers.height);
+          r.ignoreAspectRatio();
           break;
         case 'pad':
           r.resize(
