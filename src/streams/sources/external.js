@@ -2,8 +2,9 @@
 
 'use strict';
 
-var stream, util, request;
+var string, stream, util, request;
 
+string  = require('../../utils/string');
 stream  = require('stream');
 util    = require('util');
 request = require('request');
@@ -15,6 +16,8 @@ function contentLength(bufs){
 }
 
 function External(image, key, prefix){
+  var regexMatch;
+
   /* jshint validthis:true */
   if (!(this instanceof External)){
     return new External(image, key, prefix);
@@ -23,7 +26,12 @@ function External(image, key, prefix){
   this.image = image;
   this.ended = false;
   this.key = key;
-  this.prefix = prefix;
+  if (string.REGEX_REGEX.test(prefix)) {
+    regexMatch = prefix.match(string.REGEX_REGEX);
+    this.pattern = new RegExp(regexMatch[1], regexMatch[2]);
+  } else {
+    this.prefix = prefix;
+  }
 }
 
 util.inherits(External, stream.Readable);
@@ -43,7 +51,18 @@ External.prototype._read = function(){
     return this.push(null);
   }
 
-  url = this.prefix + '/' + this.image.path;
+  if (this.pattern) {
+    url = this.image.path;
+
+    if (!this.pattern.test(url)) {
+      this.image.error = new Error('URL "' + url + '" does not match pattern');
+      this.ended = true;
+      this.push(this.image);
+      return this.push(null);
+    }
+  } else {
+    url = this.prefix + '/' + this.image.path;
+  }
 
   this.image.log.time(this.key);
 
