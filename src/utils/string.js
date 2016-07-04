@@ -1,5 +1,10 @@
 'use strict';
 
+var REGEX_REGEX;
+
+
+REGEX_REGEX = /^\/((?:\\\/|[^\/])+)\/((?!.*(.).*\3)[gimuy]*)$/;
+exports.REGEX_REGEX = REGEX_REGEX;
 
 exports.sanitize = function(value, type) {
   if (typeof type === 'undefined') {
