@@ -222,19 +222,25 @@ translates to:
 
 It is possible to bring images in from external sources and store them behind your own CDN. This is very useful when it comes to things like Facebook or Vimeo which have very inconsistent load times. Each external source can still enable any of the modification parameters list above.
 
-In addition to the provided external sources, you can easily add your own basic external sources using `EXTERNAL_SOURCE_*` environment variables. For example, to add Wikipedia as an external source, set the following environment variable:
+In addition to the provided external sources, you can easily add your own external sources using `EXTERNAL_SOURCE_*` environment variables. For example, to add Wikipedia as an external source, set the following environment variable:
 
 ```
 EXTERNAL_SOURCE_WIKIPEDIA: 'https://upload.wikimedia.org/wikipedia/'
 ```
 
-Then you can request images beginning with the provided path using the `ewikipedia` modifier, eg:
+Then you can request images beginning with the provided path prefix using the `ewikipedia` modifier, eg:
 
     http://my.cdn.com/ewikipedia/en/7/70/Example.png
-    
+
 translates to:
 
     https://upload.wikimedia.org/wikipedia/en/7/70/Example.png
+
+You may also use [Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp). Just use the same syntax as regex literals in JS. For example, to match any URLs matching `*.googleusercontent.com`:
+
+```
+EXTERNAL_SOURCE_GOOGLEUSERCONTENT=/https?:\/\/.+\.googleusercontent\.com\//i
+```
 
 It is worth noting that Twitter requires a full set of credentials as you need to poll their API in order to return profile pics.
 
