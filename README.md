@@ -34,18 +34,18 @@ There is a [RubyGem](https://github.com/jimmynicol/ir-helper) of helpers (both R
 
 ## Architecture
 
-The new refactored codebase now takes advantage of node streams. The [previous iteration](https://github.com/jimmynicol/image-resizer/tree/v0.0.1) was heavily based on promises but still ended up with spaghetti code to some extent.
+The codebase takes advantage of node streams.
 
-Inspired a lot by [Gulp](http://gulpjs.com) `image-resizer` passes around an Image object between each of the streams that contains information about the request and the image data (either as a buffer or stream).
+Inspired a lot by [Gulp](http://gulpjs.com), `image-resizer` passes around an Image object between each of the streams that contains information about the request and the image data (either as a buffer or stream).
 
-Images are also no longer modified and sent back to s3 for storage. The full power of the CDN is used for storing the modified images. This greatly improves performance both on the server side and client side. Google PageSpeed did not like the 302 redirects returned by an `image-resizer` instance.
+Modified images are not sent back to s3 for storage. Instead, use a CDN to cache the modified images. This greatly improves performance both on the server side and client side. Google PageSpeed does not like 302 redirects.
 
-Also removing the need to push data to s3 helps the server processing as this can be a wildly inconsistent action.
+Removing the need to push data to s3 also helps server response times, as the network performance can be wildly inconsistent.
 
 
 ## Plugins
 
-`image-resizer` now supports a range of custom plugins for both image sources and filters. As mentioned above a number of sources are supported out of the box but each of these can be over written as needed.
+`image-resizer` supports a range of custom plugins for both image sources and filters. As mentioned above a number of sources are supported out of the box but each of these can be over written as needed.
 
 The directory structure created via `$ image-resizer new` will include a plugins directory where the initialization script will pick up any scripts and insert them into the application.
 
