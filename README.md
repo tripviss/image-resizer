@@ -293,9 +293,3 @@ See [install docs for sharp](http://sharp.dimens.io/en/stable/install/) if you g
 The gulp setup includes nodemon which runs the app nicely, restarting between code changes. `PORT` can be set in the `.env` file if you need to run on a port other than 3001.
 
 Tests can be run with: `gulp test`
-
-
-## Early promise-based version of codebase
-
-*NOTE:* Completely refactored and improved, if you are looking for the older version it is tagged as [v0.0.1](https://github.com/jimmynicol/image-resizer/tree/v0.0.1).
-
