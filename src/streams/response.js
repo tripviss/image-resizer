@@ -20,14 +20,6 @@ function ResponseWriter(request, response){
 util.inherits(ResponseWriter, stream.Writable);
 
 
-ResponseWriter.prototype.expiresIn = function(maxAge){
-  var dt = Date.now();
-  dt += maxAge * 1000;
-
-  return (new Date(dt)).toGMTString();
-};
-
-
 ResponseWriter.prototype.shouldCacheResponse = function(){
   if (env.development){
     if (env.CACHE_DEV_REQUESTS){
@@ -61,10 +53,7 @@ ResponseWriter.prototype._write = function(image){
   if (image.modifiers.action === 'json'){
     if (this.shouldCacheResponse()){
       this.response.set({
-        'Cache-Control':  'public',
-        'Expires':        this.expiresIn(env.JSON_EXPIRY),
-        'Last-Modified':  (new Date(1000)).toGMTString(),
-        'Vary':           'Accept-Encoding'
+        'Cache-Control': 'max-age=' + String(image.expiry)
       });
     }
 
@@ -76,10 +65,7 @@ ResponseWriter.prototype._write = function(image){
 
   if (this.shouldCacheResponse()){
     this.response.set({
-      'Cache-Control':  'public',
-      'Expires':        this.expiresIn(image.expiry),
-      'Last-Modified':  (new Date(1000)).toGMTString(),
-      'Vary':           'Accept-Encoding'
+      'Cache-Control': 'max-age=' + String(image.expiry)
     });
   }
 
