@@ -34,10 +34,10 @@ Local.prototype._read = function(){
     return this.push(null);
   }
 
-  this.image.log.time('local filesystem');
+  this.image.log.time('source:local');
 
   fs.readFile(this.filePath, function(err, data){
-    _this.image.log.timeEnd('local filesystem');
+    _this.image.log.timeEnd('source:local');
 
     // if there is an error store it on the image object and pass it along
     if (err) {

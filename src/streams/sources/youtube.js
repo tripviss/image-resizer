@@ -39,7 +39,7 @@ Youtube.prototype._read = function(){
   videoId = this.image.image.split('.')[0];
   url = 'http://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
 
-  this.image.log.time('youtube');
+  this.image.log.time('source:youtube');
 
   var opts = {
     url: url,
@@ -47,7 +47,7 @@ Youtube.prototype._read = function(){
   };
 
   request(opts, function (err, response, body) {
-    _this.image.log.timeEnd('youtube');
+    _this.image.log.timeEnd('source:youtube');
 
     if (err) {
       _this.image.error = err;

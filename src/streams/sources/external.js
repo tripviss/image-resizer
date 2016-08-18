@@ -26,8 +26,7 @@ function External(image, key, prefix){
   this.image = image;
   this.ended = false;
   this.key = key;
-  if (string.REGEX_REGEX.test(prefix)) {
-    regexMatch = prefix.match(string.REGEX_REGEX);
+  if ((regexMatch = prefix.match(string.REGEX_LITERAL_REGEX)) !== null) {
     this.pattern = new RegExp(regexMatch[1], regexMatch[2]);
   } else {
     this.prefix = prefix;
@@ -64,7 +63,7 @@ External.prototype._read = function(){
     url = this.prefix + '/' + this.image.path;
   }
 
-  this.image.log.time(this.key);
+  this.image.log.time('source:' + this.key);
 
   imgStream = request.get(url);
   imgStream.on('data', function(d){ bufs.push(d); });
@@ -77,7 +76,7 @@ External.prototype._read = function(){
     }
   });
   imgStream.on('end', function(){
-    _this.image.log.timeEnd(_this.key);
+    _this.image.log.timeEnd('source:' + _this.key);
     if(_this.image.isError()) {
       _this.image.error.message += Buffer.concat(bufs);
     } else {

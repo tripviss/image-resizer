@@ -63,7 +63,7 @@ Twitter.prototype._read = function(){
     _this.push(null);
   };
 
-  this.image.log.time('twitter');
+  this.image.log.time('source:twitter');
 
   profileId = this.image.image.split('.')[0];
 
@@ -91,7 +91,7 @@ Twitter.prototype._read = function(){
       };
 
       request(opts, function (err, response, body) {
-        _this.image.log.timeEnd('twitter');
+        _this.image.log.timeEnd('source:twitter');
 
         if (err) {
           _this.image.error = err;
