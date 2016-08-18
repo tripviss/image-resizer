@@ -40,7 +40,7 @@ Vimeo.prototype._read = function(){
     _this.push(null);
   };
 
-  this.image.log.time('vimeo');
+  this.image.log.time('source:vimeo');
   videoId = this.image.image.split('.')[0];
   url = 'http://vimeo.com/api/v2/video/' + videoId + '.json';
 
@@ -62,7 +62,7 @@ Vimeo.prototype._read = function(){
       };
 
       request(opts, function (err, response, body) {
-        _this.image.log.timeEnd('vimeo');
+        _this.image.log.timeEnd('source:vimeo');
 
         if (err) {
           _this.image.error = err;

@@ -145,7 +145,6 @@ Image.prototype.getFile = function(){
 
   // if all is well find the appropriate stream
   else {
-    this.log.log('new stream created!');
     Stream = sources[streamType];
   }
 

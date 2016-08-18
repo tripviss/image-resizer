@@ -45,7 +45,7 @@ Facebook.prototype._read = function(){
 
   url = 'https://graph.facebook.com/' + fbUid + '/picture?type=large';
 
-  this.image.log.time('facebook');
+  this.image.log.time('source:facebook');
 
   var opts = {
     url: url,
@@ -53,7 +53,7 @@ Facebook.prototype._read = function(){
   };
 
   request(opts, function (err, response, body) {
-    _this.image.log.timeEnd('facebook');
+    _this.image.log.timeEnd('source:facebook');
 
     if (err) {
       _this.image.error = err;

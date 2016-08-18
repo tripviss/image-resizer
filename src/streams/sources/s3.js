@@ -50,10 +50,10 @@ s3Stream.prototype._read = function(){
     Key: this.image.path.replace(/^\//,'')
   };
 
-  this.image.log.time('s3');
+  this.image.log.time('source:s3');
 
   if (!awsOptions.Key) {
-    this.image.log.timeEnd('s3');
+    this.image.log.timeEnd('source:s3');
 
     this.image.error = new Error('Empty object key');
     this.image.error.statusCode = 404;
@@ -64,7 +64,7 @@ s3Stream.prototype._read = function(){
   }
 
   client.getObject(awsOptions, function(err, data){
-    _this.image.log.timeEnd('s3');
+    _this.image.log.timeEnd('source:s3');
 
     // if there is an error store it on the image object and pass it along
     if (err) {

@@ -239,7 +239,13 @@ translates to:
 You may also use [Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp). Just use the same syntax as regex literals in JS. For example, to match any URLs matching `*.googleusercontent.com`:
 
 ```
-EXTERNAL_SOURCE_GOOGLEUSERCONTENT=/https?:\/\/.+\.googleusercontent\.com\//i
+EXTERNAL_SOURCE_GOOGLEUSERCONTENT=/^https?:\/\/.+\.googleusercontent\.com\//i
+```
+
+Or to simply allow any URL (below is a really naive regex for matching URLs):
+
+```
+EXTERNAL_SOURCE_URL=/^https?:\/\//i
 ```
 
 It is worth noting that Twitter requires a full set of credentials as you need to poll their API in order to return profile pics.
