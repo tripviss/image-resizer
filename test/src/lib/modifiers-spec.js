@@ -48,6 +48,12 @@ describe('Modifiers module', function(){
         mod.parse(request, undefined, localEnv).width.should.equal(500);
         mod.parse(request, undefined, localEnv).height.should.equal(500);
     });
+
+    it('should not set hasModStr when no folder is specified', function() {
+        var request = 'qistf72.jpg';
+        mod.parse(request).hasModStr.should.not.be.true;
+    })
+
   });
 
 
