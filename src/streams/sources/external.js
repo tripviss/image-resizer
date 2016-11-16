@@ -2,8 +2,9 @@
 
 'use strict';
 
-var string, stream, util, request;
+var env, string, stream, util, request;
 
+env    = require('../../config/environment_vars');
 string  = require('../../utils/string');
 stream  = require('stream');
 util    = require('util');
@@ -65,7 +66,13 @@ External.prototype._read = function(){
 
   this.image.log.time('source:' + this.key);
 
-  imgStream = request.get(url);
+  var options = {
+    url: url,
+    headers: {
+      'User-Agent': env.USER_AGENT
+    }
+  };
+  imgStream = request.get(options);
   imgStream.on('data', function(d){ bufs.push(d); });
   imgStream.on('error', function(err){
     _this.image.error = new Error(err);

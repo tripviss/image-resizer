@@ -42,9 +42,15 @@ Vimeo.prototype._read = function(){
 
   this.image.log.time('source:vimeo');
   videoId = this.image.image.split('.')[0];
-  url = 'http://vimeo.com/api/v2/video/' + videoId + '.json';
 
-  request(url, function(err, response, body){
+  var options = {
+    url: 'http://vimeo.com/api/v2/video/' + videoId + '.json',
+    headers: {
+      'User-Agent': env.USER_AGENT
+    }
+  };
+
+  request(options, function(err, response, body){
     if (err){
       _this.image.error = new Error(err);
       endStream();
@@ -58,7 +64,10 @@ Vimeo.prototype._read = function(){
 
       var opts = {
         url: imageUrl,
-        encoding: null
+        encoding: null,
+        headers: {
+          'User-Agent': env.USER_AGENT
+        }
       };
 
       request(opts, function (err, response, body) {
