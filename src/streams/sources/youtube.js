@@ -43,7 +43,10 @@ Youtube.prototype._read = function(){
 
   var opts = {
     url: url,
-    encoding: null
+    encoding: null,
+    headers: {
+      'User-Agent': env.USER_AGENT
+    }
   };
 
   request(opts, function (err, response, body) {

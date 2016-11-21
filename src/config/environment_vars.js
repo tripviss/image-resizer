@@ -61,7 +61,9 @@ vars = {
   IMAGE_404: null,
 
   // Whitelist arbitrary HTTP source prefixes using EXTERNAL_SOURCE_*
-  EXTERNAL_SOURCE_WIKIPEDIA: 'https://upload.wikimedia.org/wikipedia/'
+  EXTERNAL_SOURCE_WIKIPEDIA: 'https://upload.wikimedia.org/wikipedia/',
+
+  USER_AGENT: 'image-resizer'
 
 };
 
