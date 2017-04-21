@@ -301,8 +301,8 @@ exports.parse = function(requestUrl, namedMods, envOverride){
   crop      = getModifier('c');
   quality   = getModifier('q');
   segments  = requestUrl.replace(/^\//,'').split('/');
-  modStr    = _.first(segments);
-  image     = _.last(segments).toLowerCase();
+  image     = (segments.splice(-1,1)[0] || "").toLowerCase();
+  modStr    = _.first(segments) || "";
   namedMods = typeof namedMods === 'undefined' ? namedModifierMap : namedMods;
 
 
