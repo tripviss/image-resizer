@@ -9,6 +9,14 @@ env     = ir.env;
 Img     = ir.img;
 streams = ir.streams;
 
+app.use(function (req, res, next) {
+  if (req.path === '/ping') {
+    res.send('pong');
+  } else {
+    next();
+  }
+});
+
 app.directory = __dirname;
 ir.expressConfig(app);
 
