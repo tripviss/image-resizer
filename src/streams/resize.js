@@ -66,6 +66,12 @@ module.exports = function () {
       break;
 
     case 'resize':
+      if (!image.modifiers.width || !image.modifiers.height) {
+        image.error = new Error('no width or no height');
+        callback(null, image);
+        return;
+      }
+
       r.resize(image.modifiers.width, image.modifiers.height);
       r.max();
       r.toBuffer(resizeResponse);
