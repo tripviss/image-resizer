@@ -58,32 +58,30 @@ Image.validInputFormats  = ['jpeg', 'jpg', 'png', 'webp', 'tiff', 'tif', 'gif'];
 Image.validOutputFormats = ['jpeg', 'png', 'webp'];
 
 // Determine the name and format of the requested image
-Image.prototype.parseImage = function(request){
-  var fileStr = _.last(request.path.split('/'));
-  var exts = fileStr.split('.').map( function (item) {
-    return item.toLowerCase();
-  });
+Image.prototype.parseImage = function (request) {
+  var filenameParts = _.last(request.path.split('/')).split('.');
+  var inputFormat;
+  var outputFormat;
 
   // clean out any metadata format
-  if (exts[exts.length - 1] === 'json') {
-    this.format = exts[exts.length - 2];
-    exts.pop();
-    fileStr = exts.join('.');
+  if (_.last(filenameParts).toLowerCase() === 'json') {
+    filenameParts.pop();
+    this.format = _.last(filenameParts).toLowerCase();
   }
 
   // if path contains valid output format, remove it from path
-  if (exts.length >= 3) {
-    var inputFormat = exts[exts.length - 2];
-    var outputFormat = exts.pop();
+  if (filenameParts.length >= 3) {
+    inputFormat = filenameParts[filenameParts.length - 2].toLowerCase();
+    outputFormat = filenameParts[filenameParts.length - 1].toLowerCase();
 
     if (_.indexOf(Image.validInputFormats, inputFormat) > -1 &&
         _.indexOf(Image.validOutputFormats, outputFormat) > -1) {
       this.outputFormat = outputFormat;
-      fileStr = exts.join('.');
+      filenameParts.pop();
     }
   }
 
-  this.image  = fileStr;
+  this.image = filenameParts.join('.');
 };
 
 
