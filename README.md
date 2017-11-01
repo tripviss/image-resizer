@@ -299,3 +299,23 @@ See [install docs for sharp](http://sharp.dimens.io/en/stable/install/) if you g
 The gulp setup includes nodemon which runs the app nicely, restarting between code changes. `PORT` can be set in the `.env` file if you need to run on a port other than 3001.
 
 Tests can be run with: `gulp test`
+
+## Docker
+
+Build the Docker image with
+
+    docker build -t image-resizer .
+
+Run the docker container with built image above
+
+    docker run -d \
+    -e NODE_ENV='production' \
+    -e EXTERNAL_SOURCE_EXAMPLE='http://example.com/' \
+    -e PORT='3000' \
+    -e LOCAL_FILE_PATH='/app/image-resizer/node_modules/image-resizer' \
+    -p 3000:3000 image-resizer
+
+In the example above, we proxy the images from `example.com` host. You
+can try the below url in browser.
+
+    localhost:3000/eexample/path/to/external/image.jpg
