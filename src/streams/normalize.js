@@ -1,7 +1,6 @@
 'use strict';
 
 var sharp  = require('sharp');
-var env    = require('../config/environment_vars');
 var map    = require('map-stream');
 
 

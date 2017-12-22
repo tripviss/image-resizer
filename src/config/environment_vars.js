@@ -8,7 +8,7 @@ vars = {
 
   NODE_ENV: 'development',
   PORT: 3001,
-  DEFAULT_SOURCE: 's3',
+  DEFAULT_SOURCE: 'gcp',
   EXCLUDE_SOURCES: null, // add comma delimited list
 
   // Restrict to named modifiers strings only
@@ -19,6 +19,11 @@ vars = {
   AWS_SECRET_ACCESS_KEY: null,
   AWS_REGION: null,
   S3_BUCKET: null,
+
+  //Google Cloud Keys
+  CLOUD_BUCKET: 'gdp_test_bucket',
+  GCLOUD_PROJECT: 'gdp-node-test',
+  
 
   // Resize options
   RESIZE_PROCESS_ORIGINAL: true,
