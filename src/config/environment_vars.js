@@ -21,8 +21,8 @@ vars = {
   S3_BUCKET: null,
 
   //Google Cloud Keys
-  CLOUD_BUCKET: 'gdp_test_bucket',
-  GCLOUD_PROJECT: 'gdp-node-test',
+  CLOUD_BUCKET: 'gdp-image-store',
+  GCLOUD_PROJECT: 'gdp-image-server',
   
 
   // Resize options

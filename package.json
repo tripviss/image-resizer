@@ -2,8 +2,9 @@
   "name": "image-resizer",
   "version": "1.7.0",
   "description": "On-the-fly image resizing and optimization using node and sharp (libvips). Heroku ready!",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "gulp test"
   },
   "keywords": [
@@ -22,7 +23,7 @@
     "image-resizer": "./bin/image_resizer.js"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": ">=4.3.2"
   },
   "dependencies": {
     "@google-cloud/storage": "1.4.0",
