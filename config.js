@@ -35,10 +35,10 @@ nconf
   // 4. Defaults
   .defaults({
     // Typically you will create a bucket with the same name as your project ID.
-    CLOUD_BUCKET: 'gdp-image-store',
+    CLOUD_BUCKET: 'bucket-name-here',
 
     // This is the id of your project in the Google Cloud Developers Console.
-    GCLOUD_PROJECT: 'gdp-image-server',
+    GCLOUD_PROJECT: 'project-name-here',
 
     PORT: 8080
   });
