@@ -8,7 +8,7 @@ vars = {
 
   NODE_ENV: 'development',
   PORT: 3001,
-  DEFAULT_SOURCE: 'gcp',
+  DEFAULT_SOURCE: 'gcp', // this will be gcp for Google Cloud Platform or s3 for AWS
   EXCLUDE_SOURCES: null, // add comma delimited list
 
   // Restrict to named modifiers strings only
